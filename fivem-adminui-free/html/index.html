@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin UI Pro</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="app" class="hidden">
+        <div id="panel" class="panel">
+            <aside class="sidebar">
+                <div class="brand">
+                    <div class="brand-icon">A</div>
+                    <div>
+                        <p id="uiSubtitle" class="eyebrow">Admin Tool</p>
+                        <h1 id="uiTitle">Admin UI</h1>
+                    </div>
+                </div>
+
+                <div class="status-card">
+                    <span id="frameworkBadge">Framework: unknown</span>
+                    <small id="dataStats">Lade Daten...</small>
+                </div>
+
+                <nav class="nav">
+                    <button class="nav-btn active" data-tab="dashboard">Dashboard</button>
+                    <button class="nav-btn" data-tab="items">Items</button>
+                    <button class="nav-btn" data-tab="weapons">Waffen</button>
+                    <button class="nav-btn" data-tab="vehicles">Fahrzeuge</button>
+                    <button class="nav-btn" data-tab="jobs">Jobs</button>
+                    <button class="nav-btn" data-tab="gangs">Gangs</button>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <span id="footerText">ENTF zum Schließen</span>
+                </div>
+            </aside>
+
+            <main class="main">
+                <header id="dragHeader" class="topbar">
+                    <div>
+                        <p class="eyebrow">Admin Control Center</p>
+                        <h2 id="pageTitle">Dashboard</h2>
+                    </div>
+
+                    <div class="topbar-actions">
+                        <div class="hint">Header ziehen zum Verschieben · unten rechts skalieren</div>
+                        <button id="closeBtn" class="close-btn" type="button">×</button>
+                    </div>
+                </header>
+
+                <section id="tab-dashboard" class="tab active">
+                    <div class="stats-grid">
+                        <div class="stat-card"><span>Spieler</span><strong id="statPlayers">0</strong></div>
+                        <div class="stat-card"><span>Items</span><strong id="statItems">0</strong></div>
+                        <div class="stat-card"><span>Waffen</span><strong id="statWeapons">0</strong></div>
+                        <div class="stat-card"><span>Fahrzeuge</span><strong id="statVehicles">0</strong></div>
+                        <div class="stat-card"><span>Jobs</span><strong id="statJobs">0</strong></div>
+                        <div class="stat-card"><span>Gangs</span><strong id="statGangs">0</strong></div>
+                    </div>
+
+                    <div class="pro-card">
+                        <h3>Online Spieler</h3>
+                        <p>Spieler können in den Modulen gesucht oder per ID eingegeben werden.</p>
+                        <div id="playerPreview" class="player-grid"></div>
+                    </div>
+                </section>
+
+                <section id="tab-items" class="tab">
+                    <div id="itemsSection" class="pro-card">
+                        <h3 id="itemsTitle">Items geben</h3>
+                        <p id="itemsDescription">Gib einem Spieler ein Item mit Anzahl.</p>
+
+                        <div class="form-grid">
+                            <div class="field">
+                                <label>Spieler</label>
+                                <div class="search-select" data-select="itemPlayer">
+                                    <input id="itemPlayerId" type="text" placeholder="ID oder Name suchen" autocomplete="off" />
+                                    <div class="select-results"></div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label>Item</label>
+                                <div class="search-select" data-select="item">
+                                    <input id="itemName" type="text" placeholder="Item suchen" autocomplete="off" />
+                                    <div class="select-results"></div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label>Anzahl</label>
+                                <input id="itemAmount" type="number" placeholder="1" />
+                            </div>
+                        </div>
+
+                        <button id="giveItemBtn" class="main-btn">Item geben</button>
+                    </div>
+                </section>
+
+                <section id="tab-weapons" class="tab">
+                    <div id="weaponsSection" class="pro-card">
+                        <h3 id="weaponsTitle">Waffen geben</h3>
+                        <p id="weaponsDescription">Gib einem Spieler eine Waffe mit Munition.</p>
+
+                        <div class="form-grid">
+                            <div class="field">
+                                <label>Spieler</label>
+                                <div class="search-select" data-select="weaponPlayer">
+                                    <input id="weaponPlayerId" type="text" placeholder="ID oder Name suchen" autocomplete="off" />
+                                    <div class="select-results"></div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label>Waffe</label>
+                                <div class="search-select" data-select="weapon">
+                                    <input id="weaponName" type="text" placeholder="Waffe suchen" autocomplete="off" />
+                                    <div class="select-results"></div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label>Munition</label>
+                                <input id="weaponAmmo" type="number" placeholder="50" />
+                            </div>
+                        </div>
+
+                        <button id="giveWeaponBtn" class="main-btn">Waffe geben</button>
+                    </div>
+                </section>
+
+                <section id="tab-vehicles" class="tab">
+                    <div id="vehiclesSection" class="pro-card">
+                        <h3 id="vehiclesTitle">Auto spawnen</h3>
+                        <p id="vehiclesDescription">Spawne ein Fahrzeug direkt bei dir.</p>
+
+                        <div class="form-grid one">
+                            <div class="field">
+                                <label>Fahrzeug</label>
+                                <div class="search-select" data-select="vehicle">
+                                    <input id="vehicleName" type="text" placeholder="Fahrzeug suchen oder Model eingeben" autocomplete="off" />
+                                    <div class="select-results"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="spawnVehicleBtn" class="main-btn">Auto spawnen</button>
+                    </div>
+                </section>
+
+                <section id="tab-jobs" class="tab">
+                    <div id="jobsSection" class="pro-card">
+                        <h3 id="jobsTitle">Job setzen</h3>
+                        <p id="jobsDescription">Setze einem Spieler einen Job und Rang.</p>
+
+                        <div class="form-grid">
+                            <div class="field">
+                                <label>Spieler</label>
+                                <div class="search-select" data-select="jobPlayer">
+                                    <input id="jobPlayerId" type="text" placeholder="ID oder Name suchen" autocomplete="off" />
+                                    <div class="select-results"></div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label>Job</label>
+                                <select id="jobName">
+                                    <option value="">Job auswählen</option>
+                                </select>
+                            </div>
+
+                            <div class="field">
+                                <label>Rang</label>
+                                <select id="jobGrade">
+                                    <option value="">Rang auswählen</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button id="setJobBtn" class="main-btn">Job setzen</button>
+                    </div>
+                </section>
+
+                <section id="tab-gangs" class="tab">
+                    <div id="gangsSection" class="pro-card">
+                        <h3 id="gangsTitle">Gang setzen</h3>
+                        <p id="gangsDescription">Setze einem Spieler eine Gang und Rang.</p>
+
+                        <div class="form-grid">
+                            <div class="field">
+                                <label>Spieler</label>
+                                <div class="search-select" data-select="gangPlayer">
+                                    <input id="gangPlayerId" type="text" placeholder="ID oder Name suchen" autocomplete="off" />
+                                    <div class="select-results"></div>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label>Gang</label>
+                                <select id="gangName">
+                                    <option value="">Gang auswählen</option>
+                                </select>
+                            </div>
+
+                            <div class="field">
+                                <label>Rang</label>
+                                <select id="gangGrade">
+                                    <option value="">Rang auswählen</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button id="setGangBtn" class="main-btn">Gang setzen</button>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
